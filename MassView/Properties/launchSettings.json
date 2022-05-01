@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MassView": {
+      "commandName": "Project",
+      "commandLineArgs": "-infolder D:\\research\\symsrv -outfile out.csv"
+    }
+  }
+}

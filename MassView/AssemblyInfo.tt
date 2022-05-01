@@ -1,0 +1,43 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Text" #>
+<#@ output extension=".cs" #>
+// This file defines the version information - generated using the AssemblyInfo.tt T4 template. 
+// Automatically generated file - do not modify
+
+using System.Reflection;
+
+[assembly: AssemblyVersion("<#= MASSVIEW_VERSION_MAJOR #>.<#= MASSVIEW_VERSION_MINOR #>.<#= MASSVIEW_VERSION_REVISION #>.<#= MASSVIEW_VERSION_BUILD #>")]
+[assembly: AssemblyFileVersion("<#= MASSVIEW_VERSION_MAJOR #>.<#= MASSVIEW_VERSION_MINOR #>.<#= MASSVIEW_VERSION_REVISION #>.<#= MASSVIEW_VERSION_BUILD #>")]
+[assembly: AssemblyInformationalVersion("<#= MASSVIEW_VERSION_EXTENDED_STRING #>")]
+[assembly: AssemblyTitle("MassView")]
+
+namespace MassView
+{
+	public static class MVVersion
+	{
+		public static int MASSVIEW_VERSION_MAJOR = <#= MASSVIEW_VERSION_MAJOR #>;
+		public static int MASSVIEW_VERSION_MINOR = <#= MASSVIEW_VERSION_MINOR #>; 
+		public static int MASSVIEW_VERSION_REVISION = <#= MASSVIEW_VERSION_REVISION #>;
+		public static int MASSVIEW_VERSION_BUILD = <#= MASSVIEW_VERSION_BUILD #>;
+
+		public static string MASSVIEW_VERSION_STRING = "<#= MASSVIEW_VERSION_STRING #>";
+		public static string MASSVIEW_VERSION_EXTENDED_STRING = "<#= MASSVIEW_VERSION_EXTENDED_STRING #>";
+	}
+}
+
+<#+
+
+public static int MASSVIEW_VERSION_MAJOR = 1;
+public static int MASSVIEW_VERSION_MINOR = 1; 
+public static int MASSVIEW_VERSION_REVISION = 0;
+public static int MASSVIEW_VERSION_BUILD = (DateTime.UtcNow - new DateTime(2022, 05, 01)).Days;
+
+public static string MASSVIEW_VERSION_STRING = $"{MASSVIEW_VERSION_MAJOR}.{MASSVIEW_VERSION_MINOR}.{MASSVIEW_VERSION_REVISION}";
+public static string MASSVIEW_VERSION_EXTENDED_STRING = $"{MASSVIEW_VERSION_STRING} build {MASSVIEW_VERSION_BUILD}, built {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}";
+
+#>
+
