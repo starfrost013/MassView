@@ -39,7 +39,7 @@ void Run(CommandLine cl)
 
         if (cl.OutFile != null)
         {
-            bw = new StreamWriter(new FileStream(cl.OutFile, FileMode.Truncate));
+            bw = new StreamWriter(new FileStream(cl.OutFile, FileMode.Create));
             bw.WriteLine("FileName,TimeDateStamp,ISO8601,Hex,SizeOfImage");
         }
 
@@ -88,7 +88,7 @@ void Run(CommandLine cl)
                             uint sizeOfImage = br.ReadUInt32();
                             string sizeOfImageHex = sizeOfImage.ToString("x");
 
-                            if (!cl.Quiet) Console.WriteLine($"{fileName}: {dateIso} (hex: {dateHex}, unix: {timeDateStamp}, {sizeOfImageHex}");
+                            if (!cl.Quiet) Console.WriteLine($"{fileName}: {dateIso} (hex: {dateHex}, unix: {timeDateStamp}), imagesize: {sizeOfImageHex}");
                             
                             if (cl.OutFile != null) bw.WriteLine($"{fileName},{timeDateStamp},{dateIso},{dateHex},{sizeOfImageHex}");
                         }

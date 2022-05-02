@@ -2,7 +2,7 @@
   "profiles": {
     "MassView": {
       "commandName": "Project",
-      "commandLineArgs": "-infolder C:\\users\\FiercePC\\experiments\\msdlurlgen\\msdlurlgen\\x64\\Debug\\files -outfile out.csv"
+      "commandLineArgs": "-infolder C:\\users\\FiercePC\\experiments\\msdlurlgen\\msdlurlgen\\x64\\Debug\\files -outfile out.csv "
     }
   }
 }

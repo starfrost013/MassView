@@ -5,7 +5,7 @@ using System.Reflection;
 
 [assembly: AssemblyVersion("1.3.0.1")]
 [assembly: AssemblyFileVersion("1.3.0.1")]
-[assembly: AssemblyInformationalVersion("1.3.0 build 1, built 2022-05-02 15:34:37")]
+[assembly: AssemblyInformationalVersion("1.3.0 build 1, built 2022-05-02 15:43:37")]
 [assembly: AssemblyTitle("MassView")]
 
 namespace MassView
@@ -18,7 +18,7 @@ namespace MassView
 		public static int MASSVIEW_VERSION_BUILD = 1;
 
 		public static string MASSVIEW_VERSION_STRING = "1.3.0";
-		public static string MASSVIEW_VERSION_EXTENDED_STRING = "1.3.0 build 1, built 2022-05-02 15:34:37";
+		public static string MASSVIEW_VERSION_EXTENDED_STRING = "1.3.0 build 1, built 2022-05-02 15:43:37";
 	}
 }
 
