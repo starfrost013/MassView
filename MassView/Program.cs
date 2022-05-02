@@ -8,6 +8,7 @@ if (cl != null)
 {
     try
     {
+        CommandLine.PrintVersion();
         Run(cl);
     }
     catch (Exception ex)
@@ -38,8 +39,8 @@ void Run(CommandLine cl)
 
         if (cl.OutFile != null)
         {
-            bw = new StreamWriter(new FileStream(cl.OutFile, FileMode.OpenOrCreate));
-            bw.WriteLine("FileName,TimeDateStamp,ISO8601,SizeOfImage");
+            bw = new StreamWriter(new FileStream(cl.OutFile, FileMode.Truncate));
+            bw.WriteLine("FileName,TimeDateStamp,ISO8601,Hex,SizeOfImage");
         }
 
         string[] dirFiles = Directory.GetFiles(cl.InFolder);
@@ -75,23 +76,21 @@ void Run(CommandLine cl)
                         if (peMagic[0] == 0x50
                             && peMagic[1] == 0x45)
                         {
-                            br.BaseStream.Seek(e_lfanew + 0x08, SeekOrigin.Begin);
+                            br.BaseStream.Seek(e_lfanew + 0x08, SeekOrigin.Begin); // timestamp is at 0x08
 
                             int timeDateStamp = br.ReadInt32();
                             DateTime date = new DateTime(1970, 1, 1, 1, 1, 1).AddSeconds(timeDateStamp);
                             string dateIso = date.ToString("yyyy-MM-dd HH:mm:ss");
+                            string dateHex = timeDateStamp.ToString("x");
 
-                            // we don't need to distinguish between PE32 (x86) and PE32+ (x86-64) because it just happens to line up where we need it
-
-                            br.BaseStream.Seek(e_lfanew + 0x50, SeekOrigin.Begin);
+                            br.BaseStream.Seek(e_lfanew + 0x50, SeekOrigin.Begin); // we don't need to distinguish between PE32 (x86) and PE32+ (x86-64) here, as it just happens to line up where we need it
 
                             uint sizeOfImage = br.ReadUInt32();
                             string sizeOfImageHex = sizeOfImage.ToString("x");
 
-                            Console.WriteLine($"{fileName}: {dateIso}: {sizeOfImageHex}");
+                            if (!cl.Quiet) Console.WriteLine($"{fileName}: {dateIso} (hex: {dateHex}, unix: {timeDateStamp}, {sizeOfImageHex}");
                             
-                            if (cl.OutFile != null) bw.WriteLine($"{fileName},{timeDateStamp},{dateIso},{sizeOfImageHex}");
-
+                            if (cl.OutFile != null) bw.WriteLine($"{fileName},{timeDateStamp},{dateIso},{dateHex},{sizeOfImageHex}");
                         }
                     }
                 }

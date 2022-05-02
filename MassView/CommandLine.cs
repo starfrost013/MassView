@@ -7,9 +7,10 @@ namespace MassView
 
         public string OutFile { get; set; }
 
+        public bool Quiet { get; set; }
         public static CommandLine Parse(string[] args)
         {
-            CommandLine cLine = new CommandLine();
+            CommandLine cmdLine = new CommandLine();
             
             for (int i = 0; i < args.Length; i++) 
             {
@@ -24,23 +25,27 @@ namespace MassView
                     {
                         case "-infolder":
                         case "-i":
-                            cLine.InFolder = args[i + 1];
+                            cmdLine.InFolder = args[i + 1];
                             continue;
                         case "-outfile":
                         case "-o":
-                            cLine.OutFile = args[i + 1];    
+                            cmdLine.OutFile = args[i + 1];    
+                            continue;
+                        case "-quiet":
+                        case "-q":
+                            cmdLine.Quiet = true;
                             continue;
                     }
                 }
             }
 
-            if (cLine.InFolder == null)
+            if (cmdLine.InFolder == null)
             {
                 return null;
             }
             else
             {
-                return cLine;
+                return cmdLine;
             }
         }
 
@@ -51,11 +56,13 @@ namespace MassView
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Required parameters:\n");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("-infolder: Folder to gather PE files from\n");
+            Console.WriteLine("-infolder [-i]: Folder to gather PE files from\n");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Optional parameters:\n");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("-outfile: File to dump DateTimeStamp / ImageFileSize to (by default: will write to console)");
+            Console.WriteLine("-outfile [-o]: File to dump DateTimeStamp / ImageFileSize to (by default: will write to console).");
+            Console.WriteLine("-quiet [-q]: Suppress console output");
+            Console.WriteLine("This file will be in CSV format.");
         }
 
         public static void PrintVersion()
