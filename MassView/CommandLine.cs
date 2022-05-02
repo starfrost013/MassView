@@ -56,12 +56,12 @@ namespace MassView
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Required parameters:\n");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("-infolder [-i]: Folder to gather PE files from\n");
+            Console.WriteLine("-infolder [-i]: The folder to gather PE files from.\n");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Optional parameters:\n");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("-outfile [-o]: File to dump DateTimeStamp / ImageFileSize to (by default: will write to console).");
-            Console.WriteLine("-quiet [-q]: Suppress console output");
+            Console.WriteLine("-quiet [-q]: Suppress non-essential console output.");
             Console.WriteLine("This file will be in CSV format.");
         }
 
