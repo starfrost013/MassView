@@ -68,7 +68,7 @@ namespace MassView
         public static void PrintVersion()
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("massview ");
+            Console.Write("massview Legacy");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"{MVVersion.MASSVIEW_VERSION_EXTENDED_STRING}");
             Console.WriteLine("massdumps all PE imagesize and timedatestamps in a folder\n");

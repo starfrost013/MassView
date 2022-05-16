@@ -78,7 +78,7 @@ void Run(CommandLine cl)
                         {
                             br.BaseStream.Seek(e_lfanew + 0x08, SeekOrigin.Begin); // timestamp is at 0x08
 
-                            int timeDateStamp = br.ReadInt32();
+                            long timeDateStamp = br.ReadInt64();
                             DateTime date = new DateTime(1970, 1, 1, 1, 1, 1).AddSeconds(timeDateStamp);
                             string dateIso = date.ToString("yyyy-MM-dd HH:mm:ss");
                             string dateHex = timeDateStamp.ToString("x");
